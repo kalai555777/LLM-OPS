@@ -1,0 +1,52 @@
+#Rag-app
+Rag_app:
+  prompt_label: staging
+  llm_model: gpt-5-mini
+  embedding_model: text-embedding-3-small
+  dimensions: 1024
+  chunk_size: 300
+  chunk_overlap: 30
+  encoding_name: o200k_base
+  search_type: similarity
+  k:3
+  collection_name: rag_demo
+#Goldens
+Golden_dataset:
+  max_goldens_per_context:1
+  Golden_file_name:golden_dataset_final
+  filtration_config:
+    synthetic_input_quality_threshold: 0.6
+    max_quality_retries: 2
+    critic_model: gpt-5-mini
+  evolution_config:
+    num_evolutions: 2
+    evolution:
+      multicontext:0.1
+      CONCRETIZING: 0.3
+      CONSTRAINED: 0.4
+      COMPARATIVE: 0.2
+  ContextConstruction_Config:
+    critic_model:gpt-5.4-mini
+    max_contexts_per_document: 1
+    context_quality_threshold: 0.7
+    max_retries: 2
+    Context_chunk_size: 300
+    Context_chunk_overlap: 30
+  synthesizer_model:gpt-5.4-mini
+#Generate_eval
+Generate_eval:
+  file_name: evaluation_dataset_final
+
+Evaluation:
+   Evaluation_model:gpt-5.4-mini
+   asyn_config:
+     throttle_value:3
+     max_concurrent:5
+   DisplayConfig:
+     result_dir:evaluation_results
+     report_dir:evaluation_report
+     
+
+ 
+
+
